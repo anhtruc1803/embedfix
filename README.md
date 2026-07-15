@@ -1,5 +1,7 @@
 # EmbedFix
 
+[English](#features) · [Chính sách quyền riêng tư](privacy.html)
+
 EmbedFix is a polished, client-side utility that converts social media URLs into embed-friendly alternatives. It uses no backend, sends no URLs to a server, and works by opening `index.html` in a modern browser.
 
 The project also includes a Manifest V3 extension for Google Chrome and Microsoft Edge in the [`extension`](extension/) directory.
@@ -80,6 +82,7 @@ EmbedFix/
 ├── index.html    # Semantic page structure and metadata
 ├── style.css     # Responsive design, themes, and animations
 ├── script.js     # Conversion, history, QR, sharing, and theme logic
+├── privacy.html  # Public privacy policy for the browser extension
 ├── extension/    # Chrome and Edge Manifest V3 extension
 └── README.md     # Project documentation
 ```
@@ -95,6 +98,21 @@ QR generation uses [QRCode.js](https://github.com/davidshimjs/qrcodejs) from the
 ## Privacy
 
 Conversions happen locally. EmbedFix has no analytics, account system, tracking scripts, or backend API. Only theme choice and conversion history are stored, using the browser's `localStorage`.
+
+The public privacy policy for the Chrome Web Store and Microsoft Edge Add-ons is available at [`privacy.html`](privacy.html).
+
+### Publish the privacy policy with GitHub Pages
+
+1. Open the repository on GitHub and go to **Settings → Pages**.
+2. Under **Build and deployment**, choose **Deploy from a branch**.
+3. Select the `main` branch and the `/ (root)` folder, then save.
+4. After deployment finishes, use this URL in the extension store listing:
+
+```text
+https://anhtruc1803.github.io/embedfix/privacy.html
+```
+
+The policy page is a standalone HTML file and does not use analytics, cookies, external fonts, scripts, or third-party assets.
 
 ## License
 

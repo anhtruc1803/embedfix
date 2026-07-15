@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Chính sách quyền riêng tư của tiện ích trình duyệt EmbedFix dành cho Google Chrome và Microsoft Edge."
+    />
+    <meta name="color-scheme" content="light dark" />
+    <title>Chính sách quyền riêng tư — EmbedFix</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        line-height: 1.65;
+        color: #172033;
+        background: #f5f7fb;
+      }
+
+      * { box-sizing: border-box; }
+
+      body { margin: 0; }
+
+      main {
+        width: min(780px, calc(100% - 32px));
+        margin: 48px auto;
+        padding: clamp(28px, 5vw, 56px);
+        background: #fff;
+        border: 1px solid #e3e8f1;
+        border-radius: 24px;
+        box-shadow: 0 20px 60px rgb(23 32 51 / 8%);
+      }
+
+      a { color: #5367e8; }
+      h1, h2 { line-height: 1.25; color: #101728; }
+      h1 { margin: 0 0 8px; font-size: clamp(2rem, 6vw, 3.25rem); }
+      h2 { margin-top: 36px; font-size: 1.25rem; }
+      p, li { max-width: 70ch; }
+      .brand { margin: 0 0 28px; font-weight: 800; color: #5367e8; }
+      .meta { margin: 0 0 32px; color: #637087; }
+      .summary {
+        padding: 20px 22px;
+        background: #f0f3ff;
+        border-left: 4px solid #5367e8;
+        border-radius: 12px;
+      }
+      footer {
+        margin-top: 44px;
+        padding-top: 24px;
+        border-top: 1px solid #e3e8f1;
+        color: #637087;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root { color: #d7deeb; background: #0c111d; }
+        main { background: #121927; border-color: #273146; box-shadow: none; }
+        h1, h2 { color: #f4f7fc; }
+        .meta, footer { color: #9eabc0; }
+        .summary { background: #1b2440; }
+        footer { border-color: #273146; }
+        a { color: #9eabff; }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="brand">EmbedFix</p>
+      <h1>Chính sách quyền riêng tư</h1>
+      <p class="meta">Ngày hiệu lực: 15 tháng 7 năm 2026</p>
+
+      <p class="summary">
+        EmbedFix không thu thập, truyền tải, bán hoặc chia sẻ dữ liệu cá nhân.
+        Việc chuyển đổi URL được thực hiện hoàn toàn trên thiết bị của người dùng.
+      </p>
+
+      <h2>1. Phạm vi áp dụng</h2>
+      <p>
+        Chính sách này áp dụng cho tiện ích trình duyệt EmbedFix dành cho Google
+        Chrome và Microsoft Edge. EmbedFix giúp chuyển đổi liên kết mạng xã hội
+        thành URL phù hợp hơn cho việc nhúng nội dung.
+      </p>
+
+      <h2>2. Dữ liệu EmbedFix xử lý</h2>
+      <p>
+        EmbedFix xử lý URL mà người dùng nhập, dán, kéo thả hoặc chủ động chọn
+        từ tab hiện tại hay menu chuột phải. URL chỉ được xử lý cục bộ để thay
+        đổi tên miền tương ứng. Tiện ích không gửi URL đến máy chủ của EmbedFix
+        hoặc dịch vụ phân tích bên thứ ba.
+      </p>
+
+      <h2>3. Dữ liệu được lưu trên thiết bị</h2>
+      <p>Tiện ích có thể lưu cục bộ:</p>
+      <ul>
+        <li>Giao diện màu người dùng đã chọn.</li>
+        <li>Tối đa 20 lần chuyển đổi URL gần nhất.</li>
+      </ul>
+      <p>
+        Dữ liệu này được lưu bằng API <code>chrome.storage.local</code>, không
+        được đồng bộ với tài khoản EmbedFix và không được chuyển cho bên thứ ba.
+      </p>
+
+      <h2>4. Quyền của tiện ích</h2>
+      <ul>
+        <li><strong>activeTab:</strong> đọc URL của tab hiện tại sau hành động rõ ràng của người dùng.</li>
+        <li><strong>storage:</strong> lưu giao diện và lịch sử chuyển đổi trên thiết bị.</li>
+        <li><strong>contextMenus:</strong> cung cấp thao tác chuyển đổi trong menu chuột phải.</li>
+        <li><strong>offscreen:</strong> hỗ trợ thao tác sao chép được người dùng yêu cầu.</li>
+        <li><strong>clipboardWrite:</strong> ghi URL đã chuyển đổi vào clipboard.</li>
+      </ul>
+      <p>
+        EmbedFix không yêu cầu quyền truy cập mọi website và không đọc nội dung
+        trang web.
+      </p>
+
+      <h2>5. Cookie, phân tích và quảng cáo</h2>
+      <p>
+        Tiện ích không sử dụng cookie, công cụ phân tích, mã theo dõi, quảng cáo,
+        tài khoản người dùng hoặc backend API.
+      </p>
+
+      <h2>6. Dịch vụ và thư viện bên thứ ba</h2>
+      <p>
+        QRCode.js được đóng gói trực tiếp trong tiện ích để tạo mã QR trên thiết
+        bị. URL không được gửi đến dịch vụ tạo mã QR bên ngoài.
+      </p>
+
+      <h2>7. Kiểm soát và xóa dữ liệu</h2>
+      <p>
+        Người dùng có thể xóa lịch sử ngay trong popup của EmbedFix. Gỡ tiện ích
+        khỏi trình duyệt sẽ xóa dữ liệu cục bộ thuộc tiện ích. Tệp lịch sử chỉ
+        được tạo khi người dùng chủ động chọn chức năng xuất dữ liệu.
+      </p>
+
+      <h2>8. Trẻ em</h2>
+      <p>
+        EmbedFix không chủ đích thu thập dữ liệu của bất kỳ người dùng nào, bao
+        gồm cả trẻ em.
+      </p>
+
+      <h2>9. Thay đổi chính sách</h2>
+      <p>
+        Khi chính sách này thay đổi, phiên bản cập nhật sẽ được đăng tại trang
+        này cùng ngày hiệu lực mới.
+      </p>
+
+      <h2>10. Liên hệ</h2>
+      <p>
+        Nếu có câu hỏi về quyền riêng tư, vui lòng tạo yêu cầu tại
+        <a href="https://github.com/anhtruc1803/embedfix/issues">GitHub Issues của EmbedFix</a>.
+      </p>
+
+      <footer>
+        <p>© 2026 EmbedFix · <a href="./">Quay lại trang chủ</a></p>
+      </footer>
+    </main>
+  </body>
+</html>
