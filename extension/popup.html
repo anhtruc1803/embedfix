@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="vi" data-theme="auto">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EmbedFix</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span></span>
+        <div>
+          <strong>EmbedFix</strong>
+          <small>Liên kết nhúng, đã tối ưu</small>
+        </div>
+      </div>
+      <button class="icon-button" id="themeButton" type="button" aria-label="Đổi giao diện màu" title="Đổi giao diện màu">
+        <span id="themeIcon" aria-hidden="true">◐</span>
+      </button>
+    </header>
+
+    <main>
+      <section class="converter" aria-labelledby="converterTitle">
+        <div class="section-label">
+          <h1 id="converterTitle">Chuyển đổi liên kết</h1>
+          <button class="clear-button" id="clearButton" type="button" disabled>Xóa</button>
+        </div>
+
+        <div class="input-wrap" id="dropZone">
+          <span class="input-icon" aria-hidden="true">↗</span>
+          <label class="sr-only" for="urlInput">URL mạng xã hội</label>
+          <input
+            id="urlInput"
+            type="text"
+            inputmode="url"
+            autocomplete="url"
+            autocapitalize="off"
+            spellcheck="false"
+            placeholder="Dán URL mạng xã hội"
+            aria-describedby="statusMessage"
+          />
+        </div>
+        <p class="status" id="statusMessage" role="status" aria-live="polite"></p>
+
+        <div class="result" id="resultPanel" hidden>
+          <div class="result-heading">
+            <span class="platform-badge">
+              <span id="platformIcon" aria-hidden="true"></span>
+              <span id="platformName"></span>
+            </span>
+            <span class="ready"><span aria-hidden="true">✓</span> Sẵn sàng</span>
+          </div>
+
+          <div class="url-result">
+            <span id="convertedUrl"></span>
+            <button class="icon-button compact" id="copyButton" type="button" aria-label="Sao chép URL đã chuyển đổi" title="Sao chép URL đã chuyển đổi">⧉</button>
+          </div>
+
+          <div class="actions">
+            <button class="button primary" id="openButton" type="button">Mở liên kết <span aria-hidden="true">↗</span></button>
+            <button class="button" id="shareButton" type="button" hidden>Chia sẻ</button>
+            <button class="button" id="copyOriginalButton" type="button">URL gốc</button>
+          </div>
+
+          <button class="qr-toggle" id="qrToggle" type="button" aria-expanded="false" aria-controls="qrPanel">
+            <span><span aria-hidden="true">▦</span> Mã QR</span>
+            <span class="chevron" aria-hidden="true">⌄</span>
+          </button>
+          <div class="qr-panel" id="qrPanel" hidden>
+            <div id="qrCode" aria-label="Mã QR của URL đã chuyển đổi"></div>
+            <small>Quét để mở trên thiết bị khác</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="platforms" aria-label="Nền tảng được hỗ trợ">
+        <p>Hỗ trợ</p>
+        <div id="platformList"></div>
+      </section>
+
+      <section class="history" id="historySection" aria-labelledby="historyTitle" hidden>
+        <div class="section-label history-heading">
+          <h2 id="historyTitle">Gần đây</h2>
+          <div class="history-tools">
+            <button type="button" id="importButton">Nhập</button>
+            <button type="button" id="exportButton">Xuất</button>
+            <button type="button" id="clearHistoryButton">Xóa</button>
+            <input id="importInput" type="file" accept="application/json,.json" hidden />
+          </div>
+        </div>
+        <div class="history-list" id="historyList"></div>
+      </section>
+    </main>
+
+    <footer>
+      <span><span class="privacy-dot" aria-hidden="true"></span> Riêng tư ngay từ thiết kế</span>
+      <span>Ctrl Shift C</span>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">
+      <span aria-hidden="true">✓</span>
+      <span id="toastText">Đã sao chép!</span>
+    </div>
+
+    <script src="vendor/qrcode.min.js"></script>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

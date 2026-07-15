@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "EmbedFix",
+  "version": "1.1.0",
+  "description": "Chuyển liên kết mạng xã hội thành URL nhúng tối ưu, nhanh chóng và riêng tư.",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_title": "Mở EmbedFix",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    }
+  },
+  "background": {
+    "service_worker": "service-worker.js",
+    "type": "module"
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "contextMenus",
+    "offscreen",
+    "clipboardWrite"
+  ],
+  "commands": {
+    "copy-fix-url": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+C",
+        "mac": "Command+Shift+C"
+      },
+      "description": "Sao chép URL nhúng tối ưu của tab hiện tại"
+    }
+  }
+}

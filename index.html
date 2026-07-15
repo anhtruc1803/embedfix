@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="vi" data-theme="auto">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="EmbedFix chuyển đổi liên kết mạng xã hội thành URL nhúng tối ưu ngay trên trình duyệt của bạn."
+    />
+    <meta name="theme-color" content="#f8fafc" />
+    <title>EmbedFix — Liên kết đẹp, nhúng mượt</title>
+    <script>
+      (function () {
+        try {
+          var savedTheme = localStorage.getItem("embedfix-theme-v1") || "auto";
+          var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var resolvedTheme = savedTheme === "auto" ? (prefersDark ? "dark" : "light") : savedTheme;
+          document.documentElement.dataset.theme = savedTheme;
+          document.documentElement.dataset.resolvedTheme = resolvedTheme;
+        } catch (error) {}
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔗</text></svg>" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <div id="scrollProgress" aria-hidden="true"></div>
+    <div class="background-effects" aria-hidden="true">
+      <span class="blob blob-cyan"></span>
+      <span class="blob blob-violet"></span>
+    </div>
+    <a class="skip-link" href="#converter">Đi đến công cụ chuyển đổi</a>
+
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Trang chủ EmbedFix">
+        <span class="brand-mark" aria-hidden="true">
+          <span></span><span></span>
+        </span>
+        <span>EmbedFix</span>
+      </a>
+
+      <div class="theme-switcher" role="group" aria-label="Giao diện màu">
+        <button class="theme-option" type="button" data-theme-value="light" aria-label="Dùng giao diện sáng">
+          <span aria-hidden="true">☀</span>
+        </button>
+        <button class="theme-option" type="button" data-theme-value="auto" aria-label="Dùng giao diện hệ thống">
+          <span aria-hidden="true">◐</span>
+        </button>
+        <button class="theme-option" type="button" data-theme-value="dark" aria-label="Dùng giao diện tối">
+          <span aria-hidden="true">☾</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="eyebrow"><span></span> Liên kết nhúng, đã tối ưu</div>
+        <h1 id="hero-title">Biến mọi liên kết<br /><em>thành bản nhúng đẹp.</em></h1>
+        <p>Dán URL mạng xã hội và nhận ngay liên kết thân thiện với trình nhúng — riêng tư, nhanh chóng, xử lý hoàn toàn trong trình duyệt.</p>
+      </section>
+
+      <section class="converter-card" id="converter" aria-labelledby="converter-title">
+        <div class="card-heading">
+          <div>
+            <p class="step-label">01 · Dán liên kết</p>
+            <h2 id="converter-title">Chuyển đổi URL</h2>
+          </div>
+          <button class="text-button" id="clearButton" type="button" disabled>
+            <span aria-hidden="true">×</span> Xóa
+          </button>
+        </div>
+
+        <div class="drop-zone" id="dropZone">
+          <label class="sr-only" for="urlInput">URL mạng xã hội</label>
+          <span class="input-icon" aria-hidden="true">↗</span>
+          <input
+            id="urlInput"
+            type="text"
+            inputmode="url"
+            autocomplete="url"
+            autocapitalize="off"
+            spellcheck="false"
+            placeholder="Dán URL Facebook, TikTok, Reddit, X hoặc Pixiv"
+            aria-describedby="inputHint inputStatus"
+          />
+          <kbd>Ctrl L</kbd>
+        </div>
+        <p class="input-hint" id="inputHint">Kéo thả hoặc dán liên kết để tự động chuyển đổi.</p>
+        <p class="status-message" id="inputStatus" role="status" aria-live="polite"></p>
+
+        <div class="result-panel" id="resultPanel" aria-hidden="true">
+          <div class="result-meta">
+            <span class="platform-badge" id="platformBadge">
+              <span id="platformIcon" aria-hidden="true"></span>
+              <span id="platformName"></span>
+            </span>
+            <span class="success-label"><span aria-hidden="true">✓</span> Sẵn sàng chia sẻ</span>
+          </div>
+
+          <div class="result-url-row">
+            <a id="convertedUrl" href="#" target="_blank" rel="noopener noreferrer"></a>
+            <button class="icon-button" id="copyButton" type="button" aria-label="Sao chép URL đã chuyển đổi" title="Sao chép URL đã chuyển đổi">
+              <span aria-hidden="true">⧉</span>
+            </button>
+          </div>
+
+          <div class="action-row">
+            <button class="button button-primary" id="openButton" type="button">
+              Mở liên kết <span aria-hidden="true">↗</span>
+            </button>
+            <button class="button button-secondary" id="shareButton" type="button" hidden>
+              Chia sẻ <span aria-hidden="true">⌁</span>
+            </button>
+            <button class="button button-secondary" id="copyOriginalButton" type="button">
+              Chép URL gốc
+            </button>
+          </div>
+
+          <div class="qr-block">
+            <button class="qr-toggle" id="qrToggle" type="button" aria-expanded="false" aria-controls="qrContent">
+              <span><span aria-hidden="true">▦</span> Hiện mã QR</span>
+              <span class="chevron" aria-hidden="true">⌄</span>
+            </button>
+            <div class="qr-content" id="qrContent" hidden>
+              <div id="qrCode" aria-label="Mã QR của URL đã chuyển đổi"></div>
+              <p>Quét để mở trên thiết bị khác</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="platform-section" aria-labelledby="platform-title">
+        <div class="section-heading">
+          <div>
+            <p class="step-label">02 · Nền tảng hỗ trợ</p>
+            <h2 id="platform-title">Dùng với các nền tảng quen thuộc</h2>
+          </div>
+          <p>Có thể mở rộng nền tảng mới chỉ bằng một cấu hình tập trung.</p>
+        </div>
+        <div class="platform-grid" id="platformGrid"></div>
+      </section>
+
+      <section class="history-section" id="historySection" aria-labelledby="history-title" hidden>
+        <div class="section-heading history-heading">
+          <div>
+            <p class="step-label">03 · Chuyển đổi gần đây</p>
+            <h2 id="history-title">Lịch sử của bạn</h2>
+          </div>
+          <div class="history-tools">
+            <button class="text-button" id="importButton" type="button">Nhập JSON</button>
+            <button class="text-button" id="exportButton" type="button">Xuất JSON</button>
+            <button class="text-button danger" id="clearHistoryButton" type="button">Xóa lịch sử</button>
+            <input id="importInput" type="file" accept="application/json,.json" hidden />
+          </div>
+        </div>
+        <div class="history-list" id="historyList"></div>
+      </section>
+
+      <section class="privacy-note" aria-label="Thông tin quyền riêng tư">
+        <span class="privacy-icon" aria-hidden="true">✦</span>
+        <div>
+          <h2>Riêng tư ngay từ thiết kế</h2>
+          <p>Không máy chủ, không theo dõi, không tài khoản. Liên kết không rời khỏi trình duyệt của bạn.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a class="brand footer-brand" href="./" aria-label="Trang chủ EmbedFix">
+        <span class="brand-mark small" aria-hidden="true"><span></span><span></span></span>
+        <span>EmbedFix</span>
+      </a>
+      <p>Được làm với <span aria-label="tâm huyết">♥</span> cho trải nghiệm nhúng tốt hơn.</p>
+      <p class="footer-meta">Thuần trình duyệt · Mã nguồn mở · Không theo dõi</p>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true">
+      <span aria-hidden="true">✓</span>
+      <span id="toastText">Đã sao chép!</span>
+    </div>
+  </body>
+</html>
